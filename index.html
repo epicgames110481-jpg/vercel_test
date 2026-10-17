@@ -164,4 +164,30 @@
                         { name: "Pseudo / Âge (HRP)", value: `${pseudo} (${age} ans)`, inline: true },
                         { name: "Discord", value: discord, inline: true },
                         { name: "Nom du Personnage (IC)", value: nom_rp, inline: false },
-                        { name
+                        { name: "Histoire RP", value: histoire_rp, inline: false },
+                        { name: "Motivations", value: motivations, inline: false }
+                    ]
+                }]
+            };
+
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Candidature envoyée avec succès sur Discord !');
+                    document.getElementById('rpForm').reset();
+                } else {
+                    alert("Erreur lors de l'envoi. Vérifiez la configuration du Webhook.");
+                }
+            })
+            .catch(error => {
+                alert("Erreur réseau lors de l'envoi.");
+            });
+        });
+    </script>
+
+</body>
+</html>
