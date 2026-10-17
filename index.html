@@ -138,8 +138,8 @@
     </div>
 
     <script>
-        // Remplacez le texte ci-dessous par votre URL de Webhook Discord entre guillemets si vous souhaitez l'activer :
-        const WEBHOOK_URL = "https://discord.com/api/webhooks/1561106338455748683/WQ01HuTGHdZYeJg9xsVvLEQHAjXwiF6YFW2tDSNR2KhsICB2aGPy5m7xs3QqrhzakpnA"; 
+        // Mettez votre URL de Webhook Discord entre les guillemets ci-dessous pour recevoir les candidatures :
+        const WEBHOOK_URL = ""; 
 
         document.getElementById('rpForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -152,7 +152,7 @@
             const motivations = document.getElementById('motivations').value;
 
             if (!WEBHOOK_URL) {
-                alert('Candidature envoyée avec succès ! (Pensez à configurer le Webhook Discord pour recevoir les réponses).');
+                alert('Candidature envoyée avec succès ! (Pensez à ajouter votre URL de Webhook Discord dans le code pour la recevoir sur Discord).');
                 return;
             }
 
