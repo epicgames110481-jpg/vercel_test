@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candidature GTA RP</title>
+    <title>Formulaire de Candidature GTA RP</title>
     <style>
         * {
             margin: 0;
@@ -32,40 +32,54 @@
         h1 {
             color: #38bdf8;
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-size: 2rem;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
-        .section {
-            margin-bottom: 25px;
-            background: #0f172a;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #38bdf8;
+        .form-group {
+            margin-bottom: 20px;
         }
-        .section h2 {
-            color: #94a3b8;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #38bdf8;
+            font-weight: bold;
             text-transform: uppercase;
+            font-size: 0.9rem;
         }
-        p, ul {
-            color: #cbd5e1;
-            line-height: 1.6;
+        input, textarea, select {
+            width: 100%;
+            padding: 12px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 1rem;
         }
-        ul {
-            list-style-type: square;
-            margin-left: 20px;
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #38bdf8;
         }
-        .badge {
-            display: inline-block;
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
             background: #0284c7;
             color: white;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-top: 5px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #0369a1;
         }
     </style>
 </head>
@@ -73,37 +87,50 @@
 
     <div class="container">
         <h1>Candidature GTA RP</h1>
+        
+        <!-- Remplacez VOTRE_WEBHOOK_DISCORD ci-dessous pour recevoir les réponses sur Discord -->
+        <form id="rpForm">
+            
+            <div class="form-group">
+                <label for="pseudo">Prénom / Pseudo (HRP) :</label>
+                <input type="text" id="pseudo" placeholder="Ex: Alex" required>
+            </div>
 
-        <!-- PARTIE HORS RÔLE (HRP) -->
-        <div class="section">
-            <h2>Informations HRP (Hors Rôle)</h2>
-            <p><strong>Prénom / Pseudo :</strong> VotrePseudo</p>
-            <p><strong>Âge :</strong> 18 ans</p>
-            <p><strong>Expérience RP :</strong> 500 heures (FiveM / AltV)</p>
-            <p><strong>Disponibilités :</strong> Tous les soirs à partir de 18h et les week-ends</p>
-        </div>
+            <div class="form-group">
+                <label for="age">Votre Âge (HRP) :</label>
+                <input type="number" id="age" placeholder="Ex: 18" required>
+            </div>
 
-        <!-- PARTIE EN RÔLE (IC) -->
-        <div class="section">
-            <h2>Présentation du Personnage (In Character)</h2>
-            <p><strong>Nom & Prénom :</strong> John Doe</p>
-            <p><strong>Âge du personnage :</strong> 25 ans</p>
-            <p><strong>Histoire du personnage (Lore) :</strong></p>
-            <p>Arrivé récemment en ville après quelques années à travailler dans la mécanique, John cherche à se faire une place et à construire un réseau solide. Passionné par les véhicules et le travail d'équipe, il souhaite apporter son dynamisme à la communauté.</p>
-        </div>
+            <div class="form-group">
+                <label for="discord">Identifiant Discord :</label>
+                <input type="text" id="discord" placeholder="Ex: pseudo_discord" required>
+            </div>
 
-        <!-- MOTIVATIONS -->
-        <div class="section">
-            <h2>Motivations & Objectifs</h2>
-            <p>Je souhaite rejoindre votre serveur pour bénéficier d'un RP sérieux et immersif. Mon objectif est d'apporter des scènes de qualité, de respecter l'univers du serveur et de m'investir sur le long terme.</p>
-        </div>
+            <div class="form-group">
+                <label for="nom_rp">Nom & Prénom de votre Personnage (IC) :</label>
+                <input type="text" id="nom_rp" placeholder="Ex: John Doe" required>
+            </div>
 
-        <!-- CONTACT -->
-        <div class="section">
-            <h2>Contact</h2>
-            <p><strong>Discord :</strong> votre_discord_tag</p>
-        </div>
+            <div class="form-group">
+                <label for="histoire_rp">Histoire du personnage (Lore) :</label>
+                <textarea id="histoire_rp" placeholder="Racontez l'histoire de votre personnage..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="motivations">Motivations & Objectifs :</label>
+                <textarea id="motivations" placeholder="Pourquoi voulez-vous rejoindre le serveur ?" required></textarea>
+            </div>
+
+            <button type="submit">Envoyer la Candidature</button>
+        </form>
     </div>
+
+    <script>
+        document.getElementById('rpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Candidature envoyée avec succès !');
+        });
+    </script>
 
 </body>
 </html>
