@@ -1,136 +1,45 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulaire de Candidature GTA RP</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background-color: #0f172a;
-            color: #f8fafc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .container {
-            max-width: 700px;
-            width: 100%;
-            background: #1e293b;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            border: 1px solid #334155;
-        }
-        h1 {
-            color: #38bdf8;
-            text-align: center;
-            margin-bottom: 25px;
-            font-size: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #38bdf8;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-        }
-        input, textarea, select {
-            width: 100%;
-            padding: 12px;
-            background: #0f172a;
-            border: 1px solid #334155;
-            border-radius: 6px;
-            color: #fff;
-            font-size: 1rem;
-        }
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: #38bdf8;
-        }
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-        button {
-            width: 100%;
-            padding: 14px;
-            background: #0284c7;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: background 0.3s;
-        }
-        button:hover {
-            background: #0369a1;
-        }
-    </style>
-</head>
-<body>
+<script>
+        const WEBHOOK_URL = "https://discord.com/api/webhooks/1561106338455748683/WQ01HuTGHdZYeJg9xsVvLEQHAjXwiF6YFW2tDSNR2KhsICB2aGPy5m7xs3QqrhzakpnA"; // Collez le lien de votre webhook entre les guillemets
 
-    <div class="container">
-        <h1>Candidature GTA RP</h1>
-        
-        <!-- Remplacez VOTRE_WEBHOOK_DISCORD ci-dessous pour recevoir les réponses sur Discord -->
-        <form id="rpForm">
-            
-            <div class="form-group">
-                <label for="pseudo">Prénom / Pseudo (HRP) :</label>
-                <input type="text" id="pseudo" placeholder="Ex: Alex" required>
-            </div>
-
-            <div class="form-group">
-                <label for="age">Votre Âge (HRP) :</label>
-                <input type="number" id="age" placeholder="Ex: 18" required>
-            </div>
-
-            <div class="form-group">
-                <label for="discord">Identifiant Discord :</label>
-                <input type="text" id="discord" placeholder="Ex: pseudo_discord" required>
-            </div>
-
-            <div class="form-group">
-                <label for="nom_rp">Nom & Prénom de votre Personnage (IC) :</label>
-                <input type="text" id="nom_rp" placeholder="Ex: John Doe" required>
-            </div>
-
-            <div class="form-group">
-                <label for="histoire_rp">Histoire du personnage (Lore) :</label>
-                <textarea id="histoire_rp" placeholder="Racontez l'histoire de votre personnage..." required></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="motivations">Motivations & Objectifs :</label>
-                <textarea id="motivations" placeholder="Pourquoi voulez-vous rejoindre le serveur ?" required></textarea>
-            </div>
-
-            <button type="submit">Envoyer la Candidature</button>
-        </form>
-    </div>
-
-    <script>
         document.getElementById('rpForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Candidature envoyée avec succès !');
+
+            const pseudo = document.getElementById('pseudo').value;
+            const age = document.getElementById('age').value;
+            const discord = document.getElementById('discord').value;
+            const nom_rp = document.getElementById('nom_rp').value;
+            const histoire_rp = document.getElementById('histoire_rp').value;
+            const motivations = document.getElementById('motivations').value;
+
+            const payload = {
+                embeds: [{
+                    title: "Nouvelle Candidature GTA RP",
+                    color: 3801080,
+                    fields: [
+                        { name: "Pseudo / Âge (HRP)", value: `${pseudo} (${age} ans)`, inline: true },
+                        { name: "Discord", value: discord, inline: true },
+                        { name: "Nom du Personnage (IC)", value: nom_rp, inline: false },
+                        { name: "Histoire RP", value: histoire_rp, inline: false },
+                        { name: "Motivations", value: motivations, inline: false }
+                    ]
+                }]
+            };
+
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Candidature envoyée avec succès sur Discord !');
+                    document.getElementById('rpForm').reset();
+                } else {
+                    alert("Erreur lors de l'envoi. Vérifiez la configuration du Webhook.");
+                }
+            })
+            .catch(error => {
+                alert("Erreur réseau lors de l'envoi.");
+            });
         });
     </script>
-
-</body>
-</html>
